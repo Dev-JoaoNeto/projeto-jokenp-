@@ -8,6 +8,13 @@ const emojiMap = {
       scissors: '&#x270c;'
 }
 
+const GAME_OPTIONS = {
+    ROCK: 'rock',
+    PAPER: 'paper',
+    SCISSORS: 'scissors'
+}
+
+
 let humanScoreNumber = 0;
 let machineScoreNumber = 0;
 const playHuman = (humanChoice) => {
@@ -16,7 +23,7 @@ const playHuman = (humanChoice) => {
 }
 
 const playMachine = () => {
-    const choices = ['rock', 'paper', 'scissors'];
+    const choices = [GAME_OPTIONS.ROCK, GAME_OPTIONS.PAPER, GAME_OPTIONS.SCISSORS];
     const randomNumber = Math.floor(Math.random() * 3);
 
     return choices[randomNumber];
@@ -25,7 +32,9 @@ const playMachine = () => {
 const playTheGame = (human, machine) => {
     if (human === machine) {
         result.innerHTML = 'Empatou!';
-    } else if (human === 'rock' && machine === 'scissors' || human === 'scissors' && machine === 'paper' || human === 'paper' && machine === 'rock') {
+    } else if ((human === GAME_OPTIONS.ROCK && machine === GAME_OPTIONS.SCISSORS) || 
+        (human === GAME_OPTIONS.SCISSORS && machine === GAME_OPTIONS.PAPER) || 
+        (human === GAME_OPTIONS.PAPER && machine === GAME_OPTIONS.ROCK)) {
         myScore.innerHTML = ++humanScoreNumber;
         result.innerHTML = 'Venceu!';
     } else {
